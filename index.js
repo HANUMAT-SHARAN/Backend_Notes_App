@@ -4,8 +4,9 @@ const { NotesRouter } = require("./Routes/NotesRoutes");
 const { UserRouter } = require("./Routes/UserRoute");
 const cors=require("cors")
 require("dotenv").config()
-app.use(cors())
+
 const app = express();
+app.use(cors())
 app.use(express.json());
 app.use("/",UserRouter)
 app.use("/",NotesRouter)
