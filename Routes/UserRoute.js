@@ -11,11 +11,11 @@ UserRouter.post("/register", async (req, res) => {
   try {
     bcrypt.hash(password, 5, async (err, hash) => {
       if (err) {
-        res.send("Some thing Went Wrong");
+        res.send({msg:"Some thing Went Wrong"});
       } else {
         let newUser = new UserModel({ name, email, password: hash, age });
         await newUser.save();
-        res.send("User Registered Succesfully");
+        res.send({msg:"User Registered Succesfully"});
       }
       // {"name":"Hanumat","age":19,"password":"Hanumat@123","email":"hanumat071@gmail.com"}
     });
@@ -38,10 +38,10 @@ UserRouter.post("/login", async (req, res) => {
         }
       });
     } else {
-      res.send("User Not Found");
+      res.send({msg:"User Not Found"});
     }
   } catch (error) {
-    res.send("error ", error);
+    res.send({error: error});
   }
 });
 

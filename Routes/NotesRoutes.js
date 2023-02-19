@@ -13,7 +13,7 @@ NotesRouter.post("/notes", async (req, res) => {
   try {
     let newNote = new NoteModel(req.body);
     await newNote.save();
-    res.send("Notes Added succesfully");
+    res.send({msg:"Notes Added succesfully"});
   } catch (error) {
     res.send("error ");
   }
@@ -24,7 +24,7 @@ NotesRouter.get("/notes", async (req, res) => {
     let data = await NoteModel.find({ userId: userId });
     res.send(data);
   } catch (error) {
-    res.send("Error whole");
+    res.send({msg:"Error whole"});
   }
 });
 NotesRouter.delete("/notes/:id", async (req, res) => {
@@ -32,7 +32,7 @@ NotesRouter.delete("/notes/:id", async (req, res) => {
     await NoteModel.findByIdAndDelete({ _id: req.params.id });
     res.send("Delete Suceesfully");
   } catch (error) {
-    res.send("Error whole");
+    res.send({msg:"Error whole"});
   }
 });
 NotesRouter.patch("/notes/:id", async (req, res) => {
@@ -42,9 +42,9 @@ NotesRouter.patch("/notes/:id", async (req, res) => {
   try {
     await NoteModel.findByIdAndUpdate(p, item);
 
-    res.send("Update  Suceesfully");
+    res.send({msg:"Update  Suceesfully"});
   } catch (error) {
-    res.send("Error whole");
+    res.send({msg:"Error whole"});
   }
 });
 
