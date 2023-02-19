@@ -2,6 +2,7 @@ const express = require("express");
 const {connection}=require("./Configs/db");
 const { NotesRouter } = require("./Routes/NotesRoutes");
 const { UserRouter } = require("./Routes/UserRoute");
+require("dotenv").config()
 
 const app = express();
 app.use(express.json());
@@ -12,7 +13,7 @@ app.get("/", (req, res) => {
 });
 
 
-app.listen(8080, async() => {
+app.listen(process.env.port, async() => {
   console.log("Server is Started");
   try {
     await connection
