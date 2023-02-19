@@ -3,9 +3,11 @@ const { authenticate } = require("../Middlewares/authenticate");
 const { NoteModel } = require("../Models/NotesModel");
 const NotesRouter = express.Router();
 const jswt = require("jsonwebtoken");
+const cors=require("cors")
 
 NotesRouter.use(express.json());
 NotesRouter.use(authenticate);
+NotesRouter.use(cors());
 
 NotesRouter.post("/notes", async (req, res) => {
   try {
